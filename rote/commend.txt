@@ -1,0 +1,55 @@
+->composer create-project --prefer-dist laravel/laravel REST_API
+
+Now, We are required to install the passport via the composer package manager. So, in your terminal run the below command.
+
+->composer require laravel/passport
+
+After installation of the package, We are required to get default migration to create new passport tables in our database. So, run the below command.
+
+->php artisan migrate
+
+Now, We will install the passport using the passport:install command. which will create token keys for security.
+
+->php artisan passport:install
+
+Step 3: Passport Configuration
+Now, We have to configure the model, service provider, and auth config file.
+
+1. HasApiTokens class of Passport has been added in the User model,
+
+Add the below code in app/User.php
+
+
+2. In AuthServiceProvider we have added "Passport::routes()"
+
+Add the below code in the app/Providers/AuthServiceProvider.php
+
+3. We have added API auth configuration in the auth.php file.
+
+In config/auth.php add the below code.
+
+Step 4: Add Table and Model
+In this step, We will create migration of the Product table using the PHP artisan command. So, run the below command in your terminal.
+
+->php artisan make:migration create_products_table
+
+After running the above command, you will find migration in this path database/migrations. So, add the below code in your migration file to create the products table.
+
+Now, run the below code in the terminal to create a migration.
+
+->php artisan migrate
+
+And add the below code in the app/Product.php file
+
+->php artisan make:resource Product
+
+create API folder inside controller
+
+->php artisan make:controller API/ProductController
+->php artisan make:controller API/BaseController
+->php artisan make:controller API/RegisterController
+
+
+ 
+
+

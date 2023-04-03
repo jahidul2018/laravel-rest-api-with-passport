@@ -1,0 +1,5 @@
+https://github.com/bdmotaleb/laravel8-rest-api-with-passport
+https://techsolutionstuff.com/post/laravel-8-rest-api-authentication-using-passport
+https://www.itsolutionstuff.com/post/laravel-8-rest-api-with-passport-authentication-tutorialexample.html
+https://www.tutsmake.com/laravel-8-rest-api-authentication-with-passport/
+https://www.itsolutionstuff.com/post/laravel-6-rest-api-with-passport-tutorialexample.html
