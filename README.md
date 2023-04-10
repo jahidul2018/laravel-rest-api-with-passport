@@ -2,27 +2,27 @@
 
 #### Step 1: Install Laravel
 
-``laravel new project-name``  
+`laravel new project-name`  
 or  
-``composer create-project --prefer-dist laravel/laravel project-name``
+`composer create-project --prefer-dist laravel/laravel project-name`
 
 #### Step 2: Database Configuration
 
-Create a database and configure the env file.  
+Create a database and configure the env file.
 
 #### Step 3: Passport Installation
 
 To get started, install Passport via the Composer package manager:
 
-``composer require laravel/passport``
+`composer require laravel/passport`
 
 The Passport service provider registers its own database migration directory with the framework, so you should migrate your database after installing the package. The Passport migrations will create the tables your application needs to store clients and access tokens:
 
-``php artisan migrate``
+`php artisan migrate`
 
 Next, you should run the `passport:install` command. This command will create the encryption keys needed to generate secure access tokens. In addition, the command will create "personal access" and "password grant" clients which will be used to generate access tokens:
 
-``php artisan passport:install``
+`php artisan passport:install`
 
 #### Step 4: Passport Configuration
 
@@ -99,8 +99,9 @@ Finally, in your `config/auth.php` configuration file, you should set the `drive
 #### Step 5: Add Post Table and Model
 
 next, we require to create migration & model for posts table using Laravel 8 php artisan command, so first fire bellow command:  
-``php artisan make:model Post -m``  
+`php artisan make:model Post -m`  
 After this command you will find one file in following path database/migrations and you have to put bellow code in your migration file for create posts table.
+
 ```
 <?php
 
@@ -136,10 +137,12 @@ class CreatePostsTable extends Migration
     }
 }
 ```
+
 After create migration we need to run above migration by following command:  
-``php artisan migrate``
+`php artisan migrate`
 
 **app/Models/Post.php**
+
 ```
 <?php
 
@@ -160,11 +163,12 @@ class Post extends Model
 
 in next step, now we have created a new controller as LoginController and PostController:
 
-``php artisan make:controller Api/LoginController``
+`php artisan make:controller Api/LoginController`
 
-``php artisan make:controller Api/PostController``
+`php artisan make:controller Api/PostController`
 
 #### Step 7: Create API Routes
+
 In this step, we will create api routes. Laravel provide api.php file for write web services route. So, let's add new route on that file.
 
 **routes/api.php**
@@ -204,7 +208,7 @@ Route::prefix('v1')->group(function () {
 
 ```
 <?php
-   
+
    /**
     * Success response method
     *
@@ -219,10 +223,10 @@ Route::prefix('v1')->group(function () {
            'data'    => $result,
            'message' => $message,
        ];
-   
+
        return response()->json($response, 200);
    }
-   
+
    /**
     * Return error response
     *
@@ -237,14 +241,15 @@ Route::prefix('v1')->group(function () {
            'success' => false,
            'message' => $error,
        ];
-   
+
        !empty($errorMessages) ? $response['data'] = $errorMessages : null;
-   
+
        return response()->json($response, $code);
    }
 ```
 
 **composer.json**
+
 ```
     "autoload": {
         "psr-4": {
@@ -258,7 +263,7 @@ Route::prefix('v1')->group(function () {
     },
 ```
 
-``composer dump-autoload``
+`composer dump-autoload`
 
 **app\Http\Controllers\Api\LoginController.php**
 
@@ -344,11 +349,11 @@ class LoginController extends Controller
 
 This is a very important step of creating rest api in laravel 8. you can use eloquent api resources with api. it will help you to make same response layout of your model object. we used in PostController file. now we have to create it using following command:
 
-``php artisan make:resource PostResource``
+`php artisan make:resource PostResource`
 
 Now there created a new file with a new folder on following path:
 
-``app/Http/Resources/PostResource.php``
+`app/Http/Resources/PostResource.php`
 
 ```
 <?php
@@ -501,7 +506,7 @@ class PostController extends Controller
 
 Now we are ready to run full restful api and also passport api in laravel. so let's run our example so run bellow command for quick run:
 
-``php artisan serve``
+`php artisan serve`
 
 make sure in details api we will use following headers as listed bellow:
 
@@ -516,10 +521,10 @@ Here is Routes URL with Verb:
 
 Now simply you can run above listed url like:
 
-- **User Register API:** Verb:POST, URL: http://127.0.0.1:8000/api/v1/register
-- **User Login API:** Verb:POST, URL: http://127.0.0.1:8000/api/v1/login
-- **Post List API:** Verb:GET, URL: http://127.0.0.1:8000/api/v1/posts
-- **Post Create API:** Verb:POST, URL: http://127.0.0.1:8000/api/v1/posts
-- **Single Post Show API:** Verb:GET, URL: http://127.0.0.1:8000/api/v1/posts/{id}
-- **Post Update API:** Verb:PUT, URL: http://127.0.0.1:8000/api/v1/posts/{id}
-- **Post Delete API:** Verb:DELETE, URL: http://127.0.0.1:8000/api/v1/posts/{id}
+-   **User Register API:** Verb:POST, URL: http://127.0.0.1:8000/api/v1/register
+-   **User Login API:** Verb:POST, URL: http://127.0.0.1:8000/api/v1/login
+-   **Post List API:** Verb:GET, URL: http://127.0.0.1:8000/api/v1/posts
+-   **Post Create API:** Verb:POST, URL: http://127.0.0.1:8000/api/v1/posts
+-   **Single Post Show API:** Verb:GET, URL: http://127.0.0.1:8000/api/v1/posts/{id}
+-   **Post Update API:** Verb:PUT, URL: http://127.0.0.1:8000/api/v1/posts/{id}
+-   **Post Delete API:** Verb:DELETE, URL: http://127.0.0.1:8000/api/v1/posts/{id}
